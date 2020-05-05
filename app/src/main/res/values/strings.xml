@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">PasswordStorage</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="nav_notes">Notes</string>
+    <string name="nav_guide">Guide</string>
+    <string name="add_note">＋</string>
+    <string name="add_tag">Add tag.</string>
+    <string name="nav_header_title">NOTES</string>
+    <string name="nav_header_subtitle">We are gotta note them all, right?</string>
+    <string name="title_placeholder">Description</string>
+    <string name="body_placeholder">Login</string>
+    <string name="password_placeholder">Password</string>
+    <string name="date_placeholder">Date of creation</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="date_sort">Save base</string>
+    <string name="Deleting">Deleting items</string>
+    <string name="DeletingDescription">To delete an item from the list long press on it.</string>
+</resources>

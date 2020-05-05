@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context=".Activities.Guide">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        android:descendantFocusability="blocksDescendants"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:id="@+id/guide_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="false"
+                android:gravity="center"
+                android:text="@string/nav_guide"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+            <ListView
+                android:id="@+id/guide_points"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/title_guide"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"></ListView>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
