@@ -1,6 +1,9 @@
 package com.example.notes.Activities;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -60,7 +63,7 @@ public class EditingNote extends Fragment {
         note = (Note) getArguments().getSerializable("note");
         bodyView.setText(note.getBody());
         titleView.setText(note.getTitle());
-        titleView.setText(note.getPassword());
+        passwordView.setText(note.getPassword());
 
         if (savedInstanceState != null) {
             bodyView.setText(savedInstanceState.getString("body"));
@@ -91,6 +94,18 @@ public class EditingNote extends Fragment {
                 }
             }
         });
+
+        Button btn2 = view.findViewById(R.id.copy_password);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Copied to clipboard!", note.getPassword());
+                clipboard.setPrimaryClip(clip);
+            }
+        });
+
+
 
         /*ListView listView = view.findViewById(R.id.tag_list);
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.taglist, R.id.label, note.tags);

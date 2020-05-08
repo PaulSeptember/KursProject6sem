@@ -67,7 +67,7 @@ public class DataBase {
     }
 
 
-    String getFile(){
+    public String getFile(){
         String key = KeyGenerator.generateKey(password);
         DESDerivedKey k = new DESDerivedKey(key);
 

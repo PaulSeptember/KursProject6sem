@@ -56,7 +56,10 @@ public class NoteAdapter extends ArrayAdapter<Note> {
         viewHolderItem.titleView.setText(note.getTitle());
         viewHolderItem.dateView.setText(note.getDate());
         viewHolderItem.bodyView.setText(note.getBody());
-        viewHolderItem.passwordView.setText(note.getPassword());
+        StringBuilder pass = new StringBuilder();
+        for(int i=0;i<note.getPassword().length();i++)
+            pass.append('*');
+        viewHolderItem.passwordView.setText(pass);//note.getPassword());
         //final ArrayAdapter<String> adapter = new ArrayAdapter<>(context,R.layout.taglist, R.id.label, note.tags);
         //viewHolderItem.tagsView.setAdapter(adapter);
         return convertView;

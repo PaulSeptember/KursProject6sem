@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="14dp"
+        android:background="@drawable/card">
 
         <RelativeLayout
             android:id="@+id/title_n_body"
@@ -58,6 +59,7 @@
 
             <LinearLayout
                 android:id="@+id/body"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
@@ -70,6 +72,7 @@
                     android:gravity="start|top"
                     android:hint="Login"/>
 
+
             </LinearLayout>
 
 
@@ -78,15 +81,22 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@id/body">
 
                 <EditText
                     android:id="@+id/note_password"
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
+                    android:inputType="textPassword"
+                    android:ellipsize="start"
                     android:layout_height="match_parent"
                     android:gravity="start|top"
                     android:hint="@string/password_placeholder"/>
-
+                <Button
+                    android:id="@+id/copy_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="copy"/>
             </LinearLayout>
             <Button
                 android:id="@+id/save"

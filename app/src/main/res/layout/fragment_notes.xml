@@ -30,19 +30,23 @@
                     style="@style/MainButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/search"
+                    android:layout_toStartOf="@+id/date_sort"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="30dp"
-                    android:padding="10dp"
-                    android:text="open" />
+                    android:layout_marginEnd="10dp"
+                    android:text="open"
+                    />
 
-                <SearchView
-                    android:id="@+id/search"
+                <EditText
+                    android:minHeight="150dp"
+                    android:id="@+id/dbpass"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
+                    android:hint="Password"
+                    android:visibility="invisible"
                     android:layout_marginBottom="5dp"
                     android:queryHint="@string/search" />
         </RelativeLayout>
@@ -60,7 +64,7 @@
                     android:layout_weight="6"
                     android:descendantFocusability="blocksDescendants"
                     android:divider="@color/colorPrimaryLight"
-                    android:dividerHeight="20dp"
+                    android:dividerHeight="10dp"
                     android:paddingStart="7dp"
                     android:paddingTop="10dp"
                     android:paddingEnd="7dp">

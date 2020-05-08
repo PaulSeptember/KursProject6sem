@@ -12,11 +12,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import com.example.notes.Adapters.NoteAdapter;
 import com.example.notes.Adapters.NoteDatabaseAdapter;
 import com.example.notes.Helpers.God;
 import com.example.notes.Models.DataBase;
+import com.example.notes.Models.Entry;
 import com.example.notes.Models.Note;
 import com.example.notes.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,9 +37,11 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 //import com.nbsp.materialfilepicker.MaterialFilePicker;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Comparator;
@@ -87,6 +94,7 @@ public class Notes extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        EditText dbpassView = view.findViewById(R.id.dbpass);
 
         Notes q = this;
         Button sortByDateBtn = view.findViewById(R.id.open);
@@ -97,7 +105,10 @@ public class Notes extends Fragment {
                         .withSupportFragment(q)
                         .withRequestCode(1000)
                         .start();
-                    selected = !selected;}
+                    selected = !selected;
+                    EditText ee =
+                    getActivity().findViewById(R.id.dbpass);
+                    ee.setVisibility(View.VISIBLE);}
                 else{
                     File sdcard = Environment.getExternalStorageDirectory();
                     File file = new File(sdcard, filename);
@@ -116,16 +127,28 @@ public class Notes extends Fragment {
                     }
                     fileString = text.toString();
                     DataBase d = new DataBase(text.toString());
-                    d.password = "1234";
+                    d.password = dbpassView.getText().toString();
                     d.tryToOpen();
-
+                    if (!d.isOpened){
+                        Toast toast = Toast.makeText(getActivity(),
+                                "Wrong password!",
+                                Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        //LinearLayout toastContainer = (LinearLayout) toast.getView();
+                        //ImageView catImageView = new ImageView(getActivity());
+                        //catImageView.setImageResource(R.drawable.angry_kitty);
+                        //toastContainer.addView(catImageView, 0);
+                        toast.show();
+                    }
+                    God.password = dbpassView.getText().toString();
+                    EditText eee = getActivity().findViewById(R.id.dbpass);
+                    eee.setVisibility(View.INVISIBLE);
                     int q = notes.size();
                     for(int i=0;i<q;i++){
                         Note note_to_delete = notes.get(i);
                         dbAdapter.open();
                         dbAdapter.deleteNote(note_to_delete.getId());
                         dbAdapter.close();
-                       
                     }
                     notes.clear();
                     noteAdapter.notifyDataSetChanged();
@@ -152,68 +175,33 @@ public class Notes extends Fragment {
 
 
 
+
         Button sortByTitleBtn = view.findViewById(R.id.date_sort);
         sortByTitleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (!God.filename.isEmpty()){
-                    File sdcard = Environment.getExternalStorageDirectory();
-                    File file = new File(sdcard,"test2.morra");
-                    StringBuilder text = new StringBuilder();
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader(file));
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            text.append(line);
-                            text.append('\n');
-                        }
-                        br.close();
+                File sdcard = Environment.getExternalStorageDirectory();
+                File file = new File(sdcard,filename);
+                BufferedWriter bw = null;
+                try {
+                    FileWriter fw = new FileWriter(file);
+                    bw = new BufferedWriter(fw);
+                    DataBase d = new DataBase();
+                    d.password = God.password;
+                    for(int i=0;i<notes.size();i++){
+                        Entry temp = new Entry(notes.get(i).getTitle(), notes.get(i).getBody(), notes.get(i).getPassword());
+                        d.add(temp);
                     }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    fileString = text.toString();
-                    Button b = view.findViewById(R.id.date_sort);
-                    b.setText(text);
-                //}
-                DataBase d = new DataBase(text.toString());
-                d.password = "1234";
-                d.tryToOpen();
-
-                for(int i = 0; i<d.base.size(); i++){
-                    Note note = new Note();
-                    note.saveNote(d.base.get(i).title,d.base.get(i).login,d.base.get(i).password);
-                    dbAdapter.open();
-                    dbAdapter.insert(note);
-                    dbAdapter.close();
+                    bw.write(d.getFile());
+                    bw.close();
                 }
-
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Notes notes = new Notes();
-                fragmentTransaction.replace(R.id.nav_host_fragment, notes);
-                fragmentTransaction.commit();
-                //}
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
                 noteAdapter.notifyDataSetChanged();
             }
         });
 
-        SearchView searchView = view.findViewById(R.id.search);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                searchNote(s);
-                noteAdapter.notifyDataSetChanged();
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                searchNote(s);
-                noteAdapter.notifyDataSetChanged();
-                return true;
-            }
-        });
 
 
         notesView = view.findViewById(R.id.notes_list);
