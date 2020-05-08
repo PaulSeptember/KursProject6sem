@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -73,7 +74,7 @@ public class CreatingNote extends Fragment {
             //note.tags = note.createTagListFromString(savedInstanceState.getString("tags"));
         }
 
-        FloatingActionButton btn = view.findViewById(R.id.save);
+        Button btn = view.findViewById(R.id.save);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

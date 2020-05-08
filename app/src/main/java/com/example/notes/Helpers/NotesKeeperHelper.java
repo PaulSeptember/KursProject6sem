@@ -10,7 +10,7 @@ public final class NotesKeeperHelper extends SQLiteOpenHelper {
 
     // database definition
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "yourNotes2";
+    private static final String DATABASE_NAME = "yourNotes3";
 
     public NotesKeeperHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,12 +49,13 @@ public final class NotesKeeperHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insert(String title, String body, String tags, String date)
+    public void insert(String title, String body, String password, String date)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues new_note = new ContentValues();
         new_note.put(NoteEntry.COLUMN_NAME_TITLE, title);
         new_note.put(NoteEntry.COLUMN_NAME_BODY, body);
+        new_note.put(NoteEntry.COLUMN_NAME_PASSWORD, password);
         new_note.put(NoteEntry.COLUMN_NAME_DATE, date);
         //new_note.put(NoteEntry.COLUMN_NAME_TAGS, tags);
         db.insert(NoteEntry.TABLE_NAME, null, new_note);

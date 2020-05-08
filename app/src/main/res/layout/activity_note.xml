@@ -5,26 +5,18 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="5dp"
     android:background="@color/colorPrimaryLight"
     tools:context=".Activities.CreatingNote">
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardBackgroundColor="#ffffff"
-        app:strokeColor="#000000"
-        app:strokeWidth="0dp"
-        app:cardCornerRadius="10dp"
-        android:padding="20dp"
-        android:layout_marginBottom="10dp">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <RelativeLayout
             android:id="@+id/title_n_body"
@@ -43,7 +35,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"/>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,62 +48,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
                     android:gravity="start|top"
                     android:hint="@string/title_placeholder"
 
                     />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:id="@+id/body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                android:hint="@string/body_placeholder">
+                >
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/note_body"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="start|top" />
+                    android:gravity="start|top"
+                    android:hint="Login"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/body"
-                android:hint="@string/password_placeholder">
+                android:layout_below="@id/body">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/note_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="start|top" />
+                    android:gravity="start|top"
+                    android:hint="@string/password_placeholder"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/tag_keeper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"/>
-
-        <RelativeLayout
-            android:id="@+id/tagsss"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            </LinearLayout>
+            <Button
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,11 +98,11 @@
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
                 android:backgroundTint="#2071f5"
-                android:src="@mipmap/add" />
+                android:text="save" />
         </RelativeLayout>
+
 
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

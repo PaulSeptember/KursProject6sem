@@ -23,7 +23,18 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="5dp"
                     android:padding="10dp"
-                    android:text="@string/date_sort" />
+                    android:text="save" />
+
+                <Button
+                    android:id="@+id/open"
+                    style="@style/MainButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/search"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:padding="10dp"
+                    android:text="open" />
 
                 <SearchView
                     android:id="@+id/search"

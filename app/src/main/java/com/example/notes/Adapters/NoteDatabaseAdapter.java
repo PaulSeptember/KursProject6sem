@@ -31,7 +31,8 @@ public class NoteDatabaseAdapter {
     private Cursor getAllEntries() {
         String[] columns = new String[] {NotesKeeperHelper.NoteEntry._ID,
                 NotesKeeperHelper.NoteEntry.COLUMN_NAME_TITLE, NotesKeeperHelper.NoteEntry.COLUMN_NAME_BODY,
-                /*NotesKeeperHelper.NoteEntry.COLUMN_NAME_TAGS,*/ NotesKeeperHelper.NoteEntry.COLUMN_NAME_DATE};
+                /*NotesKeeperHelper.NoteEntry.COLUMN_NAME_TAGS,*/ NotesKeeperHelper.NoteEntry.COLUMN_NAME_PASSWORD,
+                NotesKeeperHelper.NoteEntry.COLUMN_NAME_DATE};
         return  database.query(NotesKeeperHelper.NoteEntry.TABLE_NAME, columns,
                 null, null, null, null, null);
     }
@@ -71,6 +72,7 @@ public class NoteDatabaseAdapter {
         ContentValues values = new ContentValues();
         values.put(NotesKeeperHelper.NoteEntry.COLUMN_NAME_TITLE, note.getTitle());
         values.put(NotesKeeperHelper.NoteEntry.COLUMN_NAME_BODY, note.getBody());
+        values.put(NotesKeeperHelper.NoteEntry.COLUMN_NAME_PASSWORD, note.getPassword());
         //values.put(NotesKeeperHelper.NoteEntry.COLUMN_NAME_TAGS, note.getTagsString());
         values.put(NotesKeeperHelper.NoteEntry.COLUMN_NAME_DATE, note.getDate());
         return values;
